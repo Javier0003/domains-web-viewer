@@ -1,8 +1,48 @@
 import styles from '../styles/topPannel.module.css'
-export function TopPannel() {
+
+type setValueProps = {
+  setCurrentValue: (value: number) => void
+  startingValue: number
+  timer: number
+}
+
+export function TopPannel({
+  setCurrentValue,
+  startingValue,
+  timer,
+}: setValueProps) {
+  let intervalId = 0
+  const animationInterval = () => {
+    // animation interval
+  }
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // this function handles the change of the range thnigy
+    setCurrentValue(Number(e.target.value))
+  }
+  const handleAnimation = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      intervalId = setInterval(animationInterval, timer)
+    } else {
+      clearInterval(intervalId)
+    }
+  }
   return (
     <div className={styles.container}>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        name="animationCheck"
+        className={styles.animationcheck}
+        onChange={handleAnimation}
+      />
+      <label>Animation</label>
+      <input
+        type="range"
+        min={0}
+        max={350}
+        value={startingValue}
+        className={styles.range}
+        onChange={handleRangeChange}
+      />
     </div>
   )
 }
