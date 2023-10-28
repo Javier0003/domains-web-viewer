@@ -1,3 +1,27 @@
-.containers{
+.container{
+  margin: 2%;
+  color: white;
   display: flex;
+  height: 2%;
+  width: 100%;
+  max-height: 27.99px;
+}
+
+.range{
+  width: 100%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.animationcheck{
+  height: 15px;
+}
+
+.range::-webkit-slider-runnable-track{
+  background-color: purple;
+  border-radius: 8px;
+}
+.range::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  background-color: rgb(39, 3, 39);
 }
