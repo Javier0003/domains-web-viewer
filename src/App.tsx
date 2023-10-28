@@ -4,8 +4,14 @@ import { TopPannel } from './component/topPannel'
 import { Canvas } from './component/canvas'
 import { useState } from 'react'
 
-const players = [
-  {
+type Player = {
+  name:string,
+  score:number,
+  color:string
+};
+
+let players: Player[]
+  /*{
     name: 'xploid',
     score: 69,
     color: 'green',
@@ -19,11 +25,11 @@ const players = [
     name: 'jew',
     score: 50,
     color: 'rgb(255, 255, 69)',
-  },
-]
-var rounds = 0
-var cols = 0
-var rows = 0
+  },*/
+
+let rounds = 0
+let cols = 0
+let rows = 0
 const boards = new Array();
 const scores = new Array();
 
@@ -41,7 +47,11 @@ function App() {
           startingValue={currentValue}
           timer={animationTimer}
         />
-        <Canvas />
+        <Canvas 
+          rows={rows}
+          cols={cols}
+          board={boards[currentValue]}
+        />
       </div>
     </div>
   )
@@ -52,44 +62,44 @@ function fillBoards(text: String) {
   const lines = text.split(/\r?\n/);
 
   //0 is nrounds, rows and cols
-  var str = lines[0].split(" ");
+  let str = lines[0].split(" ");
   rounds = parseInt(str[0]);
   rows = parseInt(str[1]);
   cols = parseInt(str[2]);
   //1 is nplayers, name1,name2,(name3),(name4)
   str = lines[1].split(" ");
-  var nplayers = parseInt(str[0]);
+  let nplayers = parseInt(str[0]);
 
   const colors = ['rgb(255, 105, 180)','rgb(203, 114, 244)','rgb(255, 215, 0)','rgb(44, 237, 236)'];
 
-  for(var i = 0; i < nplayers; ++i)
+  for(let i = 0; i < nplayers; ++i)
   {
-    var name = str[i+1];
+    let name = str[i+1];
     players.push({name:name,color:colors[i],score:0});
   }
   //2 is 0 start
   //3 is 0 end
   const START = 2;
-  for(var i = START; i < lines.length; ++i) //Rounds
+  for(let i = START; i < lines.length; ++i) //Rounds
   {
     str = lines[i].split(" ");
 
     scores[i-START] = new Array();
-    var l = 0;
+    let l = 0;
     for(; l < nplayers; ++l)
     {
       scores[i-START][l] = parseInt(str[l+1]);
     }
-    var round = str[l];
+    let round = str[l];
     
-    for(var j = 0; j < rows; ++j)
+    for(let j = 0; j < rows; ++j)
     {
       scores[i-START][j] = new Array();
-      for(var k = 0; k < cols; ++k)
+      for(let k = 0; k < cols; ++k)
       {
         //Get 2 chars
-        var sq = round.charAt(2*k);
-        var un = round.charAt(2*k+1);
+        let sq = round.charAt(2*k);
+        let un = round.charAt(2*k+1);
         boards[i][j][k] = decode(sq,un);
       }
     }
@@ -99,13 +109,13 @@ function fillBoards(text: String) {
 
 function decode(square:String, unit:String)
 {
-  var sq = square.charCodeAt(0);
-  var excl = "!";
-  var un = unit.charCodeAt(0)-excl.charCodeAt(0);
+  let sq = square.charCodeAt(0);
+  let excl = "!";
+  let un = unit.charCodeAt(0)-excl.charCodeAt(0);
 
-  var painter = -1;
-  var drawer = -1;
-  var ability = false
+  let painter = -1;
+  let drawer = -1;
+  let ability = false
 
   if(sq === SquareCodes.EMPTY){
     painter = -1; drawer = -1;
@@ -174,14 +184,21 @@ function decode(square:String, unit:String)
     }
   }
 
-  const Square = {
+  const result:Square = {
     painter:painter,
     drawer:drawer,
     unit:un,
     ability:ability
   }
 
-  return Square;
+  return result;
+}
+
+type Square = {
+  painter:  number,
+  drawer :  number,
+  unit   :  number,
+  ability:  boolean
 }
 
 const SquareCodes = {
