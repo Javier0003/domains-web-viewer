@@ -1,10 +1,10 @@
 import styles from '../styles/leftPannel.module.css'
 type pannelProps = {
   players: { name: string; score: number; color: string }[]
+  round: number
 }
-const round = 8
 
-export function LeftPannel({ players }: pannelProps) {
+export function LeftPannel({ players, round }: pannelProps) {
   return (
     <div className={styles.container}>
       <label htmlFor="counter" style={{ fontSize: '35px' }}>
