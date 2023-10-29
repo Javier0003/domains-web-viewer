@@ -19,3 +19,12 @@
 .players{
   margin-top: 10px;
 }
+
+.upload{
+  width: 100%;
+}
+
+.uploadContainer{
+  display: flex;
+  flex-direction: column;
+}

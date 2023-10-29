@@ -4,34 +4,13 @@ import { TopPannel } from './component/topPannel'
 import { Canvas } from './component/canvas'
 import { useState } from 'react'
 
-// type Player = {
-//   name: string
-//   score: number
-//   color: string
-// }
-// : Player[]
-const players = [
-  {
-    name: 'xploid',
-    score: 69,
-    color: 'green',
-  },
-  {
-    name: 'nigga',
-    score: 420,
-    color: 'black',
-  },
-  {
-    name: 'jew',
-    score: 50,
-    color: 'rgb(255, 255, 69)',
-  },
-]
+let players = []
 
+let calls = 0
 let rounds = 0
 let cols = 0
 let rows = 0
-const boards = new Array()
+let boards: Square[][][] = []
 const scores = new Array()
 
 const animationTimer = 100
@@ -39,7 +18,9 @@ const animationTimer = 100
 function App() {
   const [currentValue, setCurrentValue] = useState(1)
   const [text, updateText] = useState('')
+
   if (text) {
+    console.log('fillBoards')
     fillBoards(text)
   }
   return (
@@ -48,6 +29,7 @@ function App() {
         players={players}
         round={currentValue}
         uploadText={updateText}
+        resetCalls={calls}
       />
       <div className={styles.sidePannel}>
         <TopPannel
@@ -62,6 +44,11 @@ function App() {
 }
 
 function fillBoards(text: string) {
+  if (++calls > 1) return
+
+  boards = []
+  players = []
+
   //Array of strings for each line
   const lines = text.split(/\r?\n/)
 
@@ -73,6 +60,10 @@ function fillBoards(text: string) {
   //1 is nplayers, name1,name2,(name3),(name4)
   str = lines[1].split(' ')
   const nplayers = parseInt(str[0])
+  // console.log('rounds' + rounds)
+  // console.log('rows: ' + rows)
+  // console.log('cols: ' + cols)
+  // console.log('lines: ' + lines.length)
 
   const colors = [
     'rgb(255, 105, 180)',
@@ -81,6 +72,7 @@ function fillBoards(text: string) {
     'rgb(44, 237, 236)',
   ]
 
+  console.log('nplayers:' + nplayers)
   for (let i = 0; i < nplayers; ++i) {
     const name = str[i + 1]
     players.push({ name: name, color: colors[i], score: 0 })
@@ -90,12 +82,13 @@ function fillBoards(text: string) {
   const START = 2
   for (
     let i = START;
-    i < lines.length;
+    i < rounds + 2;
     ++i //Rounds
   ) {
     str = lines[i].split(' ')
 
-    scores[i - START] = new Array()
+    scores[i - START] = []
+    boards[i - START] = []
     let l = 0
     for (; l < nplayers; ++l) {
       scores[i - START][l] = parseInt(str[l + 1])
@@ -103,17 +96,19 @@ function fillBoards(text: string) {
     const round = str[l]
 
     for (let j = 0; j < rows; ++j) {
-      scores[i - START][j] = new Array()
+      boards[i - START][j] = []
       for (let k = 0; k < cols; ++k) {
+        //console.log('i:' + (i - START) + ' j:' + j + ' k:' + k)
         //Get 2 chars
-        const sq = round.charAt(2 * k)
-        const un = round.charAt(2 * k + 1)
+        const sq = round.charCodeAt(2 * k)
+        const un = round.charCodeAt(2 * k + 1)
         const aux = decode(sq, un)
-        console.log(boards)
-        boards[i][j][k] = aux
+        boards[i - START][j][k] = aux
       }
     }
   }
+  console.log('resultado leido, boards.length = ' + boards.length)
+  console.log(boards)
 }
 
 function decode(square: string, unit: string) {
