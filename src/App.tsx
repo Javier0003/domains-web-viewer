@@ -61,8 +61,8 @@ function fillBoards(text: string) {
   str = lines[1].split(' ')
   const nplayers = parseInt(str[0])
   // console.log('rounds' + rounds)
-  // console.log('rows: ' + rows)
-  // console.log('cols: ' + cols)
+  console.log('rows: ' + rows)
+  console.log('cols: ' + cols)
   // console.log('lines: ' + lines.length)
 
   const colors = [
@@ -93,28 +93,32 @@ function fillBoards(text: string) {
     for (; l < nplayers; ++l) {
       scores[i - START][l] = parseInt(str[l + 1])
     }
-    const round = str[l]
+    const round = str[str.length-1]
 
-    for (let j = 0; j < rows; ++j) {
+    for (let j = 0; j < rows; j = j+1) {
       boards[i - START][j] = []
-      for (let k = 0; k < cols; ++k) {
+      for (let k = 0; k < cols; k = k+1) {
         //console.log('i:' + (i - START) + ' j:' + j + ' k:' + k)
         //Get 2 chars
-        const sq = round.charCodeAt(2 * k)
-        const un = round.charCodeAt(2 * k + 1)
+        const sq = round.charAt(2*j*rows+2*k)
+        const un = round.charAt(2*j*rows+2*k+1)
         const aux = decode(sq, un)
         boards[i - START][j][k] = aux
       }
     }
   }
-  console.log('resultado leido, boards.length = ' + boards.length)
-  console.log(boards)
+  console.log('resultado leido')
 }
 
 function decode(square: string, unit: string) {
-  const sq = square.charCodeAt(0)
-  const excl = '!'
-  const un = -1
+  const excl = "!"
+  const exclCode = excl.charCodeAt(0)
+  let sq = square.charCodeAt(0)
+  let un = unit.charCodeAt(0)
+
+  sq -= exclCode
+  un -= exclCode
+  //console.log("sq: " + square + " un: " + unit + " sqcode: " + sq + " uncode: " + un)
   // const un = unit.charCodeAt(0) - excl.charCodeAt(0)
 
   let painter = -1

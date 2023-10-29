@@ -109,7 +109,7 @@ function paintTile(sq: Square, x: number, y: number, canvasRef) {
 
   paintSquare(sqColor, x, y, canvasRef)
 
-  /*
+  
   let uColor
 
   if (sq.unit >= UnitCodes.OWN0 && sq.unit <= UnitCodes.OWN3) {
@@ -125,7 +125,7 @@ function paintTile(sq: Square, x: number, y: number, canvasRef) {
     uColor = bonusColor
     paintBonus(uColor, x, y, canvasRef)
   }
-  */
+  
 }
 function paintSquare(col: string, x: number, y: number, canvasRef) {
   const canvas = canvasRef.current
@@ -146,6 +146,7 @@ function paintUnit(color: string, x: number, y: number, canvasRef) {
   context.fillStyle = color
   let size = unitSize * tileSize * 0.7
   context.fillRect(y, x, unitSize, unitSize)
+  context.stroke()
 }
 
 function onWindowResize(canvasRef) {
