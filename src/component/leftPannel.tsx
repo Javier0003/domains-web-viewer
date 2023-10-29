@@ -2,9 +2,21 @@ import styles from '../styles/leftPannel.module.css'
 type pannelProps = {
   players: { name: string; score: number; color: string }[]
   round: number
+  uploadText: (file: string) => void
 }
 
-export function LeftPannel({ players, round }: pannelProps) {
+export function LeftPannel({ players, round, uploadText }: pannelProps) {
+  const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.files?.[0]
+    if (text) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        const file = e.target.result as string
+        uploadText(file)
+      }
+      reader.readAsText(text)
+    }
+  }
   return (
     <div className={styles.container}>
       <label htmlFor="counter" style={{ fontSize: '35px' }}>
@@ -22,6 +34,7 @@ export function LeftPannel({ players, round }: pannelProps) {
           </div>
         ))}
       </div>
+      <input type="file" onChange={handleText} />
     </div>
   )
 }
