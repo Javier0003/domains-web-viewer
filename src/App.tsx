@@ -4,14 +4,14 @@ import { TopPannel } from './component/topPannel'
 import { Canvas } from './component/canvas'
 import { useState } from 'react'
 
-let players = []
+let players: { name: string, color: string, score: number }[] = []
 
 let calls = 0
 let rounds = 0
 let cols = 0
 let rows = 0
 let boards: Square[][][] = []
-const scores = new Array()
+const scores: number[][] = []
 
 const animationTimer = 100
 
@@ -240,25 +240,6 @@ const SquareCodes = {
   P3D2: 24,
 
   ERRSQUARE: 25,
-}
-
-const UnitCodes = {
-  OWN0: 0,
-  OWN1: 1,
-  OWN2: 2,
-  OWN3: 3,
-  OWN0UP: 4,
-  OWN1UP: 5,
-  OWN2UP: 6,
-  OWN3UP: 7,
-  BUBBLE0: 8,
-  BUBBLE1: 9,
-  BUBBLE2: 10,
-  BUBBLE3: 11,
-  BONUS: 12,
-  NOTHING: 13,
-
-  ERRUNIT: 14,
 }
 
 export default App

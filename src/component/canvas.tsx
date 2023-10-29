@@ -144,7 +144,7 @@ function paintUnit(color: string, x: number, y: number, canvasRef) {
   const context = canvas.getContext('2d')
   if (!context) return
   context.fillStyle = color
-  let size = unitSize * tileSize * 0.7
+  //let size = unitSize * tileSize * 0.7
   context.fillRect(y, x, unitSize, unitSize)
   context.stroke()
 }
