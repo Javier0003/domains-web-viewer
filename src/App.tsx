@@ -4,7 +4,7 @@ import { TopPannel } from './component/topPannel'
 import { Canvas } from './component/canvas'
 import { useState } from 'react'
 
-let players: { name: string, color: string, score: number }[] = []
+let players: { name: string; color: string; score: number }[] = []
 
 let calls = 0
 let rounds = 0
@@ -20,7 +20,6 @@ function App() {
   const [text, updateText] = useState('')
 
   if (text) {
-    console.log('fillBoards')
     fillBoards(text)
   }
   return (
@@ -61,8 +60,8 @@ function fillBoards(text: string) {
   str = lines[1].split(' ')
   const nplayers = parseInt(str[0])
   // console.log('rounds' + rounds)
-  console.log('rows: ' + rows)
-  console.log('cols: ' + cols)
+  // console.log('rows: ' + rows)
+  // console.log('cols: ' + cols)
   // console.log('lines: ' + lines.length)
 
   const colors = [
@@ -93,15 +92,15 @@ function fillBoards(text: string) {
     for (; l < nplayers; ++l) {
       scores[i - START][l] = parseInt(str[l + 1])
     }
-    const round = str[str.length-1]
+    const round = str[str.length - 1]
 
-    for (let j = 0; j < rows; j = j+1) {
+    for (let j = 0; j < rows; j = j + 1) {
       boards[i - START][j] = []
-      for (let k = 0; k < cols; k = k+1) {
+      for (let k = 0; k < cols; k = k + 1) {
         //console.log('i:' + (i - START) + ' j:' + j + ' k:' + k)
         //Get 2 chars
-        const sq = round.charAt(2*j*rows+2*k)
-        const un = round.charAt(2*j*rows+2*k+1)
+        const sq = round.charAt(2 * j * rows + 2 * k)
+        const un = round.charAt(2 * j * rows + 2 * k + 1)
         const aux = decode(sq, un)
         boards[i - START][j][k] = aux
       }
@@ -111,7 +110,7 @@ function fillBoards(text: string) {
 }
 
 function decode(square: string, unit: string) {
-  const excl = "!"
+  const excl = '!'
   const exclCode = excl.charCodeAt(0)
   let sq = square.charCodeAt(0)
   let un = unit.charCodeAt(0)
