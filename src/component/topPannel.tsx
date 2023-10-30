@@ -34,7 +34,6 @@ export function TopPannel({
       intervalId = setInterval(animationInterval, timer)
       return
     }
-    console.log(intervalId)
     clearInterval(intervalId)
   }
 
