@@ -26,10 +26,10 @@ const colors = [
 
 //Provisional
 const drawerColors = [
-  'rgb(255, 43, 127)',
-  'rgb(161, 50, 233)',
-  'rgb(255, 180, 0)',
-  'rgb(0, 180, 180)',
+  'rgb(255, 180, 217)', //Pink
+  'rgb(229, 184, 249)', //Magenta
+  'rgb(255, 235, 127)', //Yellow
+  'rgb(213, 251, 251)', //Cyan
 ]
 const abilityColors = [
   'rgb(255, 43, 127)',
