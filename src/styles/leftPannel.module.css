@@ -7,6 +7,8 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin-left: 10px;
+  min-height: 730px;
+  justify-content: space-between;
 }
 
 .roundCount{

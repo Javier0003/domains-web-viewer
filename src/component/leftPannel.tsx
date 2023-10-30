@@ -41,11 +41,13 @@ export function LeftPannel({
   }
   return (
     <div className={styles.container}>
-      <label htmlFor="counter" style={{ fontSize: '35px' }}>
-        Round:
-      </label>
-      <div className={styles.roundCount}>{round}</div>
-      <div className={styles.players}>{playersD}</div>
+      <div>
+        <label htmlFor="counter" style={{ fontSize: '35px' }}>
+          Round:
+        </label>
+        <div className={styles.roundCount}>{round}</div>
+        <div className={styles.players}>{playersD}</div>
+      </div>
       <div className={styles.uploadContainer}>
         <label>Upload ur file</label>
         <input
