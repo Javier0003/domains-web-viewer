@@ -15,7 +15,7 @@ let tileSize = 0
 let rowsC = 0
 let colsC = 0
 let boardC: Square[][]
-const unitSize = 0.6 //Square is 1
+const unitSize = 0.7 //Square is 1
 
 const colors = [
   'rgb(255, 105, 180)',
@@ -141,8 +141,10 @@ function paintUnit(color: string, x: number, y: number, canvasRef) {
   const context = canvas.getContext('2d')
   if (!context) return
   context.fillStyle = color
+  const i = x * tileSize + 0.125*tileSize
+  const j = y * tileSize + 0.125*tileSize
   //let size = unitSize * tileSize * 0.7
-  context.fillRect(y, x, unitSize, unitSize)
+  context.fillRect(j, i, unitSize*tileSize, unitSize*tileSize)
   context.stroke()
 }
 
@@ -199,6 +201,6 @@ function paintBubble(color: string, x: number, y: number, canvasRef) {
     2 * Math.PI,
     false
   )
+  context.fillStyle = color
   context.fill()
-  context.stroke()
 }
