@@ -7,6 +7,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin-left: 10px;
+  margin-right: 20px;
   min-height: 730px;
   justify-content: space-between;
 }
@@ -25,9 +26,19 @@
 
 .upload{
   width: 100%;
+  display: none;
 }
 
 .uploadContainer{
   display: flex;
   flex-direction: column;
+}
+
+.labelInput{
+  width: 100px;
+  height: 30px;
+  padding-left: 10px;
+  border-radius: 8px;
+  padding-top: 10px;
+  background-color: rgb(80, 27, 144);
 }
