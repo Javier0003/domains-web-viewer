@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 .roundCount{
@@ -18,4 +19,13 @@
 
 .players{
   margin-top: 10px;
+}
+
+.upload{
+  width: 100%;
+}
+
+.uploadContainer{
+  display: flex;
+  flex-direction: column;
 }

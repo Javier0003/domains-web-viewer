@@ -1,8 +1,8 @@
 .container{
   border: 1px solid black;
   margin: auto;
-  width: 50%;
-  min-width: 900px;
+  width: 44.3%;
+  min-width: 845px;
   min-height: 700px;
   background-color: rgb(36, 31, 49);
   display: flex;
