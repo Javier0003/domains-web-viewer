@@ -6,7 +6,7 @@ type setValueProps = {
   timer: number
   rounds: number
 }
-
+let intervalId: number
 export function TopPannel({
   setCurrentValue,
   startingValue,
@@ -18,7 +18,6 @@ export function TopPannel({
     setCurrentValue(Number(e.target.value))
   }
 
-  let intervalId = 0
   const animationInterval = () => {
     // animation interval
     setCurrentValue((prevValue: number) => {
@@ -32,11 +31,10 @@ export function TopPannel({
   }
   const handleAnimation = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      if (!intervalId) {
-        intervalId = setInterval(animationInterval, timer)
-      }
+      intervalId = setInterval(animationInterval, timer)
       return
     }
+    console.log(intervalId)
     clearInterval(intervalId)
   }
 
