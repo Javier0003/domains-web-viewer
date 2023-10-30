@@ -4,12 +4,14 @@ type setValueProps = {
   setCurrentValue: (value: number) => void
   startingValue: number
   timer: number
+  rounds: number
 }
 
 export function TopPannel({
   setCurrentValue,
   startingValue,
   timer,
+  rounds,
 }: setValueProps) {
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // this function handles the change of the range thnigy
@@ -21,7 +23,7 @@ export function TopPannel({
     // animation interval
     setCurrentValue((prevValue: number) => {
       const newValue = prevValue + 1
-      if (newValue === 350) {
+      if (newValue === rounds) {
         clearInterval(intervalId)
         return prevValue
       }
@@ -50,7 +52,7 @@ export function TopPannel({
       <input
         type="range"
         min={0}
-        max={350}
+        max={rounds - 1}
         value={startingValue}
         className={styles.range}
         onChange={handleRangeChange}
