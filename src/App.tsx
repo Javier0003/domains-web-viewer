@@ -19,6 +19,12 @@ function App() {
   const [currentValue, setCurrentValue] = useState(1)
   const [text, updateText] = useState('')
 
+  //Actualiza las scores
+  for(let i = 0; i < players.length; ++i)
+  {
+    players[i].score = scores[currentValue][i]
+  }
+
   if (text) {
     fillBoards(text)
   }
