@@ -45,7 +45,7 @@ export function TopPannel({
         className={styles.animationcheck}
         onChange={handleAnimation}
       />
-      <label>Animation</label>
+      <label className={styles.text}>Animation</label>
       <input
         type="range"
         min={0}
