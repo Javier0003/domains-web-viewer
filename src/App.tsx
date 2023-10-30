@@ -16,12 +16,10 @@ const scores: number[][] = []
 const animationTimer = 100
 
 function App() {
-  const [currentValue, setCurrentValue] = useState(1)
+  const [currentValue, setCurrentValue] = useState(0)
   const [text, updateText] = useState('')
-
   //Actualiza las scores
-  for(let i = 0; i < players.length; ++i)
-  {
+  for (let i = 0; i < players.length; ++i) {
     players[i].score = scores[currentValue][i]
   }
 
@@ -60,7 +58,7 @@ function fillBoards(text: string) {
 
   //0 is nrounds, rows and cols
   let str = lines[0].split(' ')
-  rounds = parseInt(str[0])+1
+  rounds = parseInt(str[0]) + 1
   rows = parseInt(str[1])
   cols = parseInt(str[2])
   //1 is nplayers, name1,name2,(name3),(name4)
