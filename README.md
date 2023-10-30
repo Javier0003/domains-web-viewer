@@ -6,7 +6,8 @@
    
    CREDIT:
 
-   Main web author: [Javier0003](https://github.com/Javier0003)
+   Main web page author: [Javier0003](https://github.com/Javier0003)
+
    Data handling: [DarkJaslo](https://github.com/DarkJaslo)
 </p>
 
