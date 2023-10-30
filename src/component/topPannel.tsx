@@ -11,21 +11,33 @@ export function TopPannel({
   startingValue,
   timer,
 }: setValueProps) {
-  let intervalId = 0
-  const animationInterval = () => {
-    // animation interval
-  }
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // this function handles the change of the range thnigy
     setCurrentValue(Number(e.target.value))
   }
+
+  let intervalId = 0
+  const animationInterval = () => {
+    // animation interval
+    setCurrentValue((prevValue: number) => {
+      const newValue = prevValue + 1
+      if (newValue === 350) {
+        clearInterval(intervalId)
+        return prevValue
+      }
+      return newValue
+    })
+  }
   const handleAnimation = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      intervalId = setInterval(animationInterval, timer)
-    } else {
-      clearInterval(intervalId)
+      if (!intervalId) {
+        intervalId = setInterval(animationInterval, timer)
+      }
+      return
     }
+    clearInterval(intervalId)
   }
+
   return (
     <div className={styles.container}>
       <input
