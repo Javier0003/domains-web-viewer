@@ -60,7 +60,7 @@ function fillBoards(text: string) {
 
   //0 is nrounds, rows and cols
   let str = lines[0].split(' ')
-  rounds = parseInt(str[0])
+  rounds = parseInt(str[0])+1
   rows = parseInt(str[1])
   cols = parseInt(str[2])
   //1 is nplayers, name1,name2,(name3),(name4)
