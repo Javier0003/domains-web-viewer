@@ -35,6 +35,7 @@ function App() {
           setCurrentValue={setCurrentValue}
           startingValue={currentValue}
           timer={animationTimer}
+          rounds={rounds}
         />
         <Canvas rows={rows} cols={cols} board={boards[currentValue]} />
       </div>
