@@ -56,6 +56,7 @@ const bonusColor = 'rgb(200,0,0)'
 export function Canvas({ rows, cols, board }: gameInfo) {
   // Create a reference to the canvas element
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  // console.log(canvasRef)
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) {
@@ -89,8 +90,6 @@ function paint(canvasRef) {
   const context = canvas.getContext('2d')
   if (!context) return
 
-  console.log('paint')
-
   context.clearRect(0, 0, canvas.width, canvas.height)
   context.fillStyle = 'black'
   context.fillRect(0, 0, tileSize * colsC, tileSize * rowsC)
@@ -109,15 +108,14 @@ function paintTile(sq: Square, x: number, y: number, canvasRef) {
 
   paintSquare(sqColor, x, y, canvasRef)
 
-  
   let uColor
 
   if (sq.unit >= UnitCodes.OWN0 && sq.unit <= UnitCodes.OWN3) {
     uColor = unitColors[sq.unit - UnitCodes.OWN0]
-    paintUnit(uColor, x, y,canvasRef)
+    paintUnit(uColor, x, y, canvasRef)
   } else if (sq.unit >= UnitCodes.OWN0UP && sq.unit <= UnitCodes.OWN3UP) {
     uColor = upgradedColors[sq.unit - UnitCodes.OWN0UP]
-    paintUnit(uColor, x, y,canvasRef)
+    paintUnit(uColor, x, y, canvasRef)
   } else if (sq.unit >= UnitCodes.BUBBLE0 && sq.unit <= UnitCodes.BUBBLE3) {
     uColor = upgradedColors[sq.unit - UnitCodes.BUBBLE0]
     paintBubble(uColor, x, y, canvasRef)
@@ -125,7 +123,6 @@ function paintTile(sq: Square, x: number, y: number, canvasRef) {
     uColor = bonusColor
     paintBonus(uColor, x, y, canvasRef)
   }
-  
 }
 function paintSquare(col: string, x: number, y: number, canvasRef) {
   const canvas = canvasRef.current
@@ -155,7 +152,7 @@ function onWindowResize(canvasRef) {
   const context = canvas.getContext('2d')
   if (!context) return
 
-  const size = Math.min(document.body.offsetWidth, document.body.offsetHeight)
+  const size = 700
   canvas.width = size
   canvas.height = size
 
