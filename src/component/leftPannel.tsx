@@ -49,12 +49,15 @@ export function LeftPannel({
         <div className={styles.players}>{playersD}</div>
       </div>
       <div className={styles.uploadContainer}>
-        <label>Upload ur file</label>
+        <div className={styles.labelInput}>
+          <label htmlFor="fileInput">Upload ur file</label>
+        </div>
         <input
           type="file"
           onChange={handleText}
           className={styles.upload}
           accept=".txt"
+          id="fileInput"
         />
       </div>
     </div>
