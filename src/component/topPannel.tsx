@@ -54,7 +54,8 @@ export function TopPannel({
         setCurrentValue((prevValue) => {
           const newValue = prevValue + 1
           //Change maxRounds for rounds when this function becomes able to see the real value of rounds instead of 0
-          if (newValue === maxRounds) return prevValue
+          //>= is more secure here
+          if (newValue >= maxRounds) return prevValue
           return newValue
         })
         break
