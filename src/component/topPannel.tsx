@@ -17,12 +17,10 @@ export function TopPannel({
   rounds,
 }: setValueProps) {
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // this function handles the change of the range thnigy
     setCurrentValue(Number(e.target.value))
   }
 
   const animationInterval = () => {
-    // animation interval
     setCurrentValue((prevValue: number) => {
       const newValue = prevValue + 1
       if (newValue === rounds) {
@@ -39,10 +37,11 @@ export function TopPannel({
     }
     clearInterval(intervalId)
   }
+
   const handleArrowKeys = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowLeft':
-        // Handle left arrow key press
+        event.preventDefault()
         setCurrentValue((prevValue) => {
           const newValue = prevValue - 1
           if (newValue === -1) return prevValue
@@ -50,7 +49,7 @@ export function TopPannel({
         })
         break
       case 'ArrowRight':
-        // Handle right arrow key press
+        event.preventDefault()
         setCurrentValue((prevValue) => {
           const newValue = prevValue + 1
           //Change maxRounds for rounds when this function becomes able to see the real value of rounds instead of 0
@@ -64,11 +63,8 @@ export function TopPannel({
         break
     }
   }
-  // Add event listener when the component mounts
   useEffect(() => {
     window.addEventListener('keydown', handleArrowKeys)
-
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener('keydown', handleArrowKeys)
     }
