@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styles from '../styles/topPannel.module.css'
 
 type setValueProps = {
@@ -36,7 +37,30 @@ export function TopPannel({
     }
     clearInterval(intervalId)
   }
+  const handleArrowKeys = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowLeft':
+        // Handle left arrow key press
+        setCurrentValue((current) => current - 1)
+        break
+      case 'ArrowRight':
+        // Handle right arrow key press
+        setCurrentValue((current) => current + 1)
+        break
+      default:
+        // Ignore other key presses
+        break
+    }
+  }
+  // Add event listener when the component mounts
+  useEffect(() => {
+    window.addEventListener('keydown', handleArrowKeys)
 
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('keydown', handleArrowKeys)
+    }
+  }, [])
   return (
     <div className={styles.container}>
       <input
