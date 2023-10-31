@@ -41,11 +41,19 @@ export function TopPannel({
     switch (event.key) {
       case 'ArrowLeft':
         // Handle left arrow key press
-        setCurrentValue((current) => current - 1)
+        setCurrentValue((prevValue) => {
+          const newValue = prevValue - 1
+          if (newValue === -1) return prevValue
+          return newValue
+        })
         break
       case 'ArrowRight':
         // Handle right arrow key press
-        setCurrentValue((current) => current + 1)
+        setCurrentValue((prevValue) => {
+          const newValue = prevValue + 1
+          if (newValue === rounds - 1) return prevValue
+          return newValue
+        })
         break
       default:
         // Ignore other key presses
