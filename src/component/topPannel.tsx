@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import styles from '../styles/topPannel.module.css'
 
+const maxRounds = 501 //Hardcoded value
+
 type setValueProps = {
   setCurrentValue: (value: number) => void
   startingValue: number
@@ -51,7 +53,8 @@ export function TopPannel({
         // Handle right arrow key press
         setCurrentValue((prevValue) => {
           const newValue = prevValue + 1
-          if (newValue === rounds - 1) return prevValue
+          //Change maxRounds for rounds when this function becomes able to see the real value of rounds instead of 0
+          if (newValue === maxRounds) return prevValue
           return newValue
         })
         break
