@@ -64,11 +64,6 @@ function fillBoards(text: string) {
   //1 is nplayers, name1,name2,(name3),(name4)
   str = lines[1].split(' ')
   const nplayers = parseInt(str[0])
-  // console.log('rounds' + rounds)
-  // console.log('rows: ' + rows)
-  // console.log('cols: ' + cols)
-  // console.log('lines: ' + lines.length)
-
   const colors = [
     'rgb(255, 105, 180)',
     'rgb(203, 114, 244)',
@@ -76,7 +71,6 @@ function fillBoards(text: string) {
     'rgb(44, 237, 236)',
   ]
 
-  console.log('nplayers:' + nplayers)
   for (let i = 0; i < nplayers; ++i) {
     const name = str[i + 1]
     players.push({ name: name, color: colors[i], score: 0 })
@@ -111,7 +105,6 @@ function fillBoards(text: string) {
       }
     }
   }
-  console.log('resultado leido')
 }
 
 function decode(square: string, unit: string) {
@@ -122,7 +115,6 @@ function decode(square: string, unit: string) {
 
   sq -= exclCode
   un -= exclCode
-  //console.log("sq: " + square + " un: " + unit + " sqcode: " + sq + " uncode: " + un)
   // const un = unit.charCodeAt(0) - excl.charCodeAt(0)
 
   let painter = -1
