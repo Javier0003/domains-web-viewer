@@ -50,7 +50,9 @@ export function LeftPannel({
       </div>
       <div className={styles.uploadContainer}>
         <div className={styles.labelInput}>
-          <label htmlFor="fileInput" style={{ fontSize: '20px' }}>Upload file</label>
+          <label htmlFor="fileInput" style={{ fontSize: '18px' }}>
+            Upload file
+          </label>
         </div>
         <input
           type="file"
