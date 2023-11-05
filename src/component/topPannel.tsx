@@ -4,7 +4,7 @@ import styles from '../styles/topPannel.module.css'
 const maxRounds = 501 //Hardcoded value
 
 type setValueProps = {
-  setCurrentValue: (value: number) => void
+  setCurrentValue: (prevValue: number) => void
   startingValue: number
   timer: number
   rounds: number
@@ -42,7 +42,7 @@ export function TopPannel({
     switch (event.key) {
       case 'ArrowLeft':
         event.preventDefault()
-        setCurrentValue((prevValue) => {
+        setCurrentValue((prevValue: number) => {
           const newValue = prevValue - 1
           if (newValue === -1) return prevValue
           return newValue
@@ -50,7 +50,7 @@ export function TopPannel({
         break
       case 'ArrowRight':
         event.preventDefault()
-        setCurrentValue((prevValue) => {
+        setCurrentValue((prevValue: number) => {
           const newValue = prevValue + 1
           //Change maxRounds for rounds when this function becomes able to see the real value of rounds instead of 0
           //>= is more secure here
@@ -68,7 +68,7 @@ export function TopPannel({
     return () => {
       window.removeEventListener('keydown', handleArrowKeys)
     }
-  }, [])
+  })
   return (
     <div className={styles.container}>
       <input

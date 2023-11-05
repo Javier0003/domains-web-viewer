@@ -84,7 +84,7 @@ export function Canvas({ rows, cols, board }: gameInfo) {
   )
 }
 
-function paint(canvasRef) {
+function paint(canvasRef: React.RefObject<HTMLCanvasElement>) {
   const canvas = canvasRef.current
   if (!canvas) return
   const context = canvas.getContext('2d')
@@ -100,7 +100,12 @@ function paint(canvasRef) {
     }
   }
 }
-function paintTile(sq: Square, x: number, y: number, canvasRef) {
+function paintTile(
+  sq: Square,
+  x: number,
+  y: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) {
   let sqColor = squareDefaultColor
   if (sq.painter >= 0) sqColor = colors[sq.painter]
   if (sq.ability) sqColor = abilityColors[sq.painter]
@@ -124,7 +129,12 @@ function paintTile(sq: Square, x: number, y: number, canvasRef) {
     paintBonus(uColor, x, y, canvasRef)
   }
 }
-function paintSquare(col: string, x: number, y: number, canvasRef) {
+function paintSquare(
+  col: string,
+  x: number,
+  y: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) {
   const canvas = canvasRef.current
   if (!canvas) return
   const context = canvas.getContext('2d')
@@ -135,20 +145,25 @@ function paintSquare(col: string, x: number, y: number, canvasRef) {
   context.fillRect(j, i, tileSize - 0.5, tileSize - 0.5)
 }
 
-function paintUnit(color: string, x: number, y: number, canvasRef) {
+function paintUnit(
+  color: string,
+  x: number,
+  y: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) {
   const canvas = canvasRef.current
   if (!canvas) return
   const context = canvas.getContext('2d')
   if (!context) return
   context.fillStyle = color
-  const i = x * tileSize + 0.125*tileSize
-  const j = y * tileSize + 0.125*tileSize
+  const i = x * tileSize + 0.125 * tileSize
+  const j = y * tileSize + 0.125 * tileSize
   //let size = unitSize * tileSize * 0.7
-  context.fillRect(j, i, unitSize*tileSize, unitSize*tileSize)
+  context.fillRect(j, i, unitSize * tileSize, unitSize * tileSize)
   context.stroke()
 }
 
-function onWindowResize(canvasRef) {
+function onWindowResize(canvasRef: React.RefObject<HTMLCanvasElement>) {
   const canvas = canvasRef.current
   if (!canvas) return
   const context = canvas.getContext('2d')
@@ -181,11 +196,21 @@ const UnitCodes = {
 
   ERRUNIT: 14,
 }
-function paintBonus(color: string, x: number, y: number, canvasRef) {
+function paintBonus(
+  color: string,
+  x: number,
+  y: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) {
   paintUnit(color, x, y, canvasRef)
 }
 
-function paintBubble(color: string, x: number, y: number, canvasRef) {
+function paintBubble(
+  color: string,
+  x: number,
+  y: number,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) {
   const canvas = canvasRef.current
   if (!canvas) return
   const context = canvas.getContext('2d')

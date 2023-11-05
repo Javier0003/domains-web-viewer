@@ -26,11 +26,11 @@ export function LeftPannel({
   }
 
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const text = e.target.files?.[0]
+    const text = e.target?.files?.[0]
     if (text) {
       const reader = new FileReader()
       reader.onload = (e) => {
-        const file = e.target.result as string
+        const file = e.target?.result as string
         uploadText(file)
       }
       reader.readAsText(text)
