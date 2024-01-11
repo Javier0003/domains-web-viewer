@@ -16,8 +16,9 @@ const scores: number[][] = []
 const animationTimer = 100
 
 function App() {
-  const [currentValue, setCurrentValue] = useState(0)
-  const [text, updateText] = useState('')
+  const [currentValue, setCurrentValue] = useState<number>(0)
+  const [text, updateText] = useState<string>('')
+  const [isFile, setIsFile] = useState<boolean>(false)
   //Actualiza las scores
   for (let i = 0; i < players.length; ++i) {
     players[i].score = scores[currentValue][i]
@@ -33,12 +34,15 @@ function App() {
         round={currentValue}
         uploadText={updateText}
         resetCalls={calls}
+        enableTimer={setIsFile}
+        resetCount={setCurrentValue}
       />
       <div className={styles.sidePannel}>
         <TopPannel
           setCurrentValue={setCurrentValue}
           startingValue={currentValue}
           timer={animationTimer}
+          ableTimer={isFile}
           rounds={rounds}
         />
         <Canvas rows={rows} cols={cols} board={boards[currentValue]} />
