@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import styles from '../styles/topPannel.module.css'
 
 const maxRounds = 501 //Hardcoded value
-
 type setValueProps = {
   setCurrentValue: (prevValue: number | ((value: number) => number)) => void
   startingValue: number
   timer: number
   rounds: number
+  ableTimer: boolean
 }
 let intervalId: number
 export function TopPannel({
@@ -15,6 +15,7 @@ export function TopPannel({
   startingValue,
   timer,
   rounds,
+  ableTimer
 }: setValueProps) {
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentValue(Number(e.target.value))
@@ -31,6 +32,7 @@ export function TopPannel({
     })
   }
   const handleAnimation = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(!ableTimer) return
     if (e.target.checked) {
       intervalId = setInterval(animationInterval, timer)
       return
