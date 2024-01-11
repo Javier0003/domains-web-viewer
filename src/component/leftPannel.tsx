@@ -4,6 +4,8 @@ type pannelProps = {
   round: number
   uploadText: (file: string) => void
   resetCalls: number
+  resetCount: (value: number) => void
+  enableTimer: (value: boolean) => void
 }
 
 export function LeftPannel({
@@ -11,6 +13,8 @@ export function LeftPannel({
   round,
   uploadText,
   resetCalls,
+  resetCount,
+  enableTimer
 }: pannelProps) {
   let playersD
   if (players) {
@@ -26,6 +30,8 @@ export function LeftPannel({
   }
 
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    resetCount(0)
+    enableTimer(true)
     const text = e.target?.files?.[0]
     if (text) {
       const reader = new FileReader()
